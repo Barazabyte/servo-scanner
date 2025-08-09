@@ -189,9 +189,10 @@ void vMasterTask (void *pArg) {
 			if(iData > NECK_RANGE) {
 				if(eTaskGetState(thSpinServo) == eSuspended) { 
 					vTaskResume(thSpinServo);
+					
+					gpio_set_level(BUZZ_PIN, 0);  // Shut The Buzzer before suspending it's Task	
 					vTaskSuspend(thTrigBuzzer);
-				}
-				// if(eTaskGetState(thTrigBuzzer) == eRunning)
+				}				
 			}
 		}
 	}
